@@ -106,21 +106,9 @@
   $('nextBtn').onclick = () => { if (cur < state.unlocked) { cur++; render(); } };
 
   // ---------- finale ----------
-  async function finale() {
+  function finale() {
     show('finale');
     $('finalName').textContent = state.user || D.herName;
-    const pass = D.stages.map((_, i) => (state.answers[i] || []).join(',')).join('|');
-    try {
-      const base = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
-      const key = await crypto.subtle.deriveKey(
-        { name: 'PBKDF2', salt: b64(D.final.salt), iterations: D.final.iterations, hash: 'SHA-256' },
-        base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(D.final.iv) }, key, b64(D.final.data));
-      const out = JSON.parse(new TextDecoder().decode(plain));
-      $('giftLink').href = 'https://www.youtube.com/watch?v=' + out.code;
-    } catch (e) {
-      $('giftLink').textContent = 'Something went wrong. Go back and re-check the answers.';
-    }
     confetti();
   }
 
