@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Very Special Puzzle</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="stars"></div>
+
+<main id="login" class="card">
+  <h1>🔐 The Secret Vault</h1>
+  <p class="sub">Only one very special person can enter.</p>
+  <label>Who are you?<input id="user" autocomplete="off" placeholder="Your name"></label>
+  <p class="riddle" id="loginRiddle"></p>
+  <label>Password<input id="pass" type="password" autocomplete="off" placeholder="Answer the riddle"></label>
+  <button id="loginBtn">Enter</button>
+  <p class="err" id="loginErr"></p>
+</main>
+
+<main id="game" class="card hidden">
+  <div class="topbar">
+    <span id="stageNum"></span>
+    <div class="bar"><div id="barFill"></div></div>
+  </div>
+  <h2 id="title"></h2>
+  <p class="story" id="story"></p>
+  <div id="body"></div>
+  <div id="inputs"></div>
+  <div class="row">
+    <button id="checkBtn">Unlock</button>
+    <button id="hintBtn" class="ghostbtn">💡 Hint</button>
+  </div>
+  <p class="hint hidden" id="hint"></p>
+  <p class="err" id="err"></p>
+  <div class="nav"><button id="prevBtn" class="ghostbtn">← Back</button><button id="nextBtn" class="ghostbtn">Next →</button></div>
+</main>
+
+<main id="finale" class="card hidden">
+  <h1 class="big">🎉 HAPPY BIRTHDAY 🎉</h1>
+  <h2 id="finalName"></h2>
+  <p id="finalMsg" class="finalmsg"></p>
+  <div class="gift">
+    <h3>🎁 One last gift</h3>
+    <p>Your present is a video. The link is broken in two pieces: you have the first half, and this is the second half:</p>
+    <div class="code" id="finalCode"></div>
+    <button id="copyBtn" type="button">Copy the code</button>
+    <ol>
+      <li>Open a new browser tab.</li>
+      <li>Type this in the address bar: <b>youtube.com/watch?v=</b></li>
+      <li>Right after it, paste the code (Ctrl+V) and press Enter.</li>
+    </ol>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:Georgia,"Times New Roman",serif;color:#f3e9ff;background:radial-gradient(ellipse at top,#2b1a55 0%,#120a2b 60%,#07041a 100%) fixed;display:flex;justify-content:center;align-items:flex-start;padding:24px 14px;min-height:100vh}
+.stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 20%,#fff8,transparent),radial-gradient(1.5px 1.5px at 40% 80%,#fff8,transparent),radial-gradient(1px 1px at 85% 70%,#fff8,transparent),radial-gradient(1px 1px at 10% 90%,#fff8,transparent);animation:tw 6s infinite alternate}
+@keyframes tw{to{opacity:.4}}
+.card{position:relative;width:100%;max-width:720px;background:#ffffff0f;border:1px solid #ffffff25;border-radius:18px;padding:26px;backdrop-filter:blur(8px);box-shadow:0 10px 40px #0008;z-index:1;margin:auto}
+.hidden{display:none!important}
+h1,h2,h3{margin:.2em 0 .4em;color:#ffd98a}
+.sub{opacity:.8}
+label{display:block;margin:12px 0;font-size:.95rem}
+input{display:block;width:100%;margin-top:6px;padding:12px 14px;font-size:1.05rem;border-radius:10px;border:1px solid #ffffff40;background:#0006;color:#fff;font-family:inherit;letter-spacing:.04em}
+input:focus{outline:2px solid #ffd98a}
+button,.linkbtn{padding:12px 22px;font-size:1rem;border-radius:10px;border:0;background:linear-gradient(135deg,#ffb347,#ff6f91);color:#2a0f2a;font-weight:bold;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block}
+button:hover,.linkbtn:hover{filter:brightness(1.1)}
+.ghostbtn{background:transparent;border:1px solid #ffffff50;color:#f3e9ff;font-weight:normal}
+.row{display:flex;gap:10px;margin-top:14px}
+.nav{display:flex;justify-content:space-between;margin-top:18px}
+.nav button:disabled{opacity:.3;cursor:default}
+.err{color:#ff8a9b;min-height:1.2em;margin:10px 0 0}
+.good{color:#8affb0}
+.riddle{font-style:italic;color:#cbb8ff}
+.story{opacity:.9;line-height:1.5}
+.hint{background:#ffd98a22;border-left:3px solid #ffd98a;padding:10px 12px;border-radius:6px;line-height:1.5}
+.topbar{display:flex;align-items:center;gap:12px;font-size:.9rem;opacity:.9}
+.bar{flex:1;height:8px;background:#ffffff22;border-radius:6px;overflow:hidden}
+#barFill{height:100%;background:linear-gradient(90deg,#ffb347,#ff6f91);width:0;transition:width .5s}
+pre.cipher{white-space:pre-wrap;word-break:break-word;background:#0007;border:1px dashed #ffd98a80;border-radius:10px;padding:16px;font-size:1.15rem;line-height:1.7;font-family:Consolas,monospace;color:#ffe9b8}
+.small{font-size:.85rem;opacity:.7}
+.ghost{color:transparent;background:transparent}
+.ghost::selection{background:#ffd98a;color:#000}
+.riddles li,.seqs div{margin:10px 0;line-height:1.5}
+.seqs div{font-size:1.2rem;font-family:Consolas,monospace}
+table.polytab{border-collapse:collapse;margin:10px auto}
+.polytab td,.polytab th{width:42px;height:38px;text-align:center;border:1px solid #ffffff40}
+.polytab th{color:#ffd98a}
+#inputs label span{color:#ffd98a}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.chestmsg{font-style:italic;color:#ffd98a;min-height:1.4em}
+.badge{width:130px;height:150px;margin:14px auto;border-radius:14px 14px 60px 60px;background:linear-gradient(160deg,#ffd98a,#b8862b);color:#2a1a00;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 6px 18px #000a}
+.badge span{font-size:.7rem;font-weight:bold;letter-spacing:.15em;text-align:center;margin-top:6px}
+/* sudoku */
+.sudoku{display:grid;grid-template-columns:repeat(9,1fr);width:min(100%,380px);margin:14px auto;border:3px solid #ffd98a;aspect-ratio:1}
+.sudoku input{margin:0;padding:0;text-align:center;border-radius:0;border:1px solid #ffffff30;background:#0005;font-size:1.15rem;width:100%;height:100%;letter-spacing:0}
+.sudoku input.given{background:#ffffff1a;color:#ffd98a;font-weight:bold}
+.sudoku input.shade{background:#ffd98a33}
+.sudoku input.given.shade{background:#ffd98a4d}
+.sudoku input:nth-child(3n){border-right:2px solid #ffd98a}
+.sudoku input:nth-child(n+19):nth-child(-n+27),.sudoku input:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #ffd98a}
+#finale{text-align:center}
+.big{font-size:clamp(2rem,8vw,3.6rem);animation:pulse 2s infinite alternate;text-shadow:0 0 20px #ff6f91}
+@keyframes pulse{to{transform:scale(1.05)}}
+.finalmsg{white-space:pre-wrap;font-size:1.2rem;line-height:1.7}
+.gift{margin-top:26px;padding:18px;border:2px dashed #ffd98a;border-radius:14px;text-align:left}
+.code{font-family:Consolas,monospace;font-size:1.8rem;text-align:center;letter-spacing:.12em;background:#0008;border-radius:10px;padding:14px;margin:12px 0;color:#8affb0;user-select:all}
+.gift button{display:block;margin:0 auto 12px}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:5}
