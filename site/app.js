@@ -18,7 +18,7 @@
   }
 
   function show(id) {
-    ['login', 'game', 'finale'].forEach((x) => $(x).classList.toggle('hidden', x !== id));
+    ['login', 'game'].forEach((x) => $(x).classList.toggle('hidden', x !== id));
     window.scrollTo(0, 0);
   }
 
@@ -29,7 +29,7 @@
     if (h === D.login.hash) {
       state.user = $('user').value.trim() || D.herName;
       save();
-      state.unlocked > D.stages.length - 1 && state.answers.length >= D.stages.length ? finale() : (cur = Math.min(state.unlocked, D.stages.length - 1), render());
+      cur = Math.min(state.unlocked, D.stages.length - 1); render();
     } else {
       $('loginErr').textContent = 'Not quite... read the riddle again 🙂';
       $('loginBtn').classList.add('shake');
@@ -96,7 +96,11 @@
     state.answers[cur] = vals.map(norm);
     if (cur >= state.unlocked) state.unlocked = cur + 1;
     save();
-    if (cur === D.stages.length - 1) return finale();
+    if (cur === D.stages.length - 1) {
+      $('err').innerHTML = '<span class="good">✔ Correct!</span>';
+      $('barFill').style.width = '100%';
+      return;
+    }
     cur++;
     render();
   }
@@ -104,33 +108,6 @@
   $('hintBtn').onclick = () => $('hint').classList.toggle('hidden');
   $('prevBtn').onclick = () => { if (cur > 0) { cur--; render(); } };
   $('nextBtn').onclick = () => { if (cur < state.unlocked) { cur++; render(); } };
-
-  // ---------- finale ----------
-  function finale() {
-    show('finale');
-    $('finalName').textContent = state.user || D.herName;
-    confetti();
-  }
-
-  function confetti() {
-    const c = $('confetti'), x = c.getContext('2d');
-    const fit = () => { c.width = innerWidth; c.height = innerHeight; };
-    fit(); addEventListener('resize', fit);
-    const cols = ['#ffd98a', '#ff6f91', '#8affb0', '#9ad1ff', '#d6a8ff'];
-    const bits = Array.from({ length: 220 }, () => ({
-      x: Math.random() * innerWidth, y: -Math.random() * innerHeight, r: 4 + Math.random() * 6,
-      v: 1.5 + Math.random() * 3.5, w: Math.random() * 2 - 1, c: cols[Math.floor(Math.random() * cols.length)], a: Math.random() * 6,
-    }));
-    (function tick() {
-      x.clearRect(0, 0, c.width, c.height);
-      for (const b of bits) {
-        b.y += b.v; b.x += Math.sin(b.a += 0.05) + b.w;
-        if (b.y > c.height + 10) { b.y = -10; b.x = Math.random() * c.width; }
-        x.fillStyle = b.c; x.fillRect(b.x, b.y, b.r, b.r * 0.6);
-      }
-      requestAnimationFrame(tick);
-    })();
-  }
 
   // resume
   $('user').value = state.user || '';
