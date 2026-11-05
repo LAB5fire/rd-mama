@@ -117,11 +117,9 @@
         base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
       const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(D.final.iv) }, key, b64(D.final.data));
       const out = JSON.parse(new TextDecoder().decode(plain));
-      $('finalMsg').textContent = out.message;
-      $('finalCode').textContent = out.code;
-      $('copyBtn').onclick = () => { navigator.clipboard.writeText(out.code); $('copyBtn').textContent = 'Copied! ✔'; };
+      $('giftLink').href = 'https://www.youtube.com/watch?v=' + out.code;
     } catch (e) {
-      $('finalMsg').textContent = 'Something went wrong unlocking the message. Go back and re-check the answers.';
+      $('giftLink').textContent = 'Something went wrong. Go back and re-check the answers.';
     }
     confetti();
   }
